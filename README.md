@@ -1,5 +1,7 @@
 # Elastic Certified Engineer practice lab (unofficial)
 
+## NOTE: Everything here is fully vibe-coded, quality is not guaranteed :)
+
 Two 3-node Elasticsearch 9.3 clusters with Kibana, sample data, exam-style
 tasks with automatic checking, and troubleshooting scenarios.
 
