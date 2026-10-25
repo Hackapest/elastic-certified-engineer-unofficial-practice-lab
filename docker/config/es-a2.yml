@@ -1,0 +1,35 @@
+cluster.name: cluster-a
+node.name: es-a2
+
+network.host: 0.0.0.0
+discovery.seed_hosts: ["es-a1", "es-a2", "es-a3"]
+cluster.initial_master_nodes: ["es-a1", "es-a2", "es-a3"]
+
+# Custom node attributes for shard allocation filtering and awareness
+node.attr.zone: zone-2
+node.attr.temp: hot
+
+# Snapshot repositories must be registered under this path
+path.repo: ["/usr/share/elasticsearch/snapshots"]
+
+xpack.license.self_generated.type: trial
+
+xpack.security.enabled: true
+xpack.security.http.ssl.enabled: true
+xpack.security.http.ssl.key: certs/es-a2/es-a2.key
+xpack.security.http.ssl.certificate: certs/es-a2/es-a2.crt
+xpack.security.http.ssl.certificate_authorities: certs/ca/ca.crt
+xpack.security.transport.ssl.enabled: true
+xpack.security.transport.ssl.key: certs/es-a2/es-a2.key
+xpack.security.transport.ssl.certificate: certs/es-a2/es-a2.crt
+xpack.security.transport.ssl.certificate_authorities: certs/ca/ca.crt
+xpack.security.transport.ssl.verification_mode: certificate
+
+# Remote cluster server (API key based remote clusters, port 9443)
+remote_cluster_server.enabled: true
+remote_cluster.port: 9443
+xpack.security.remote_cluster_server.ssl.enabled: true
+xpack.security.remote_cluster_server.ssl.key: certs/es-a2/es-a2.key
+xpack.security.remote_cluster_server.ssl.certificate: certs/es-a2/es-a2.crt
+xpack.security.remote_cluster_client.ssl.enabled: true
+xpack.security.remote_cluster_client.ssl.certificate_authorities: certs/ca/ca.crt

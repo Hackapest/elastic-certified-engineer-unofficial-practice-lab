@@ -1,0 +1,18 @@
+# Lab state: progress, answers, exam, CA certificate, uploaded files
+.state/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Editors and OS
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Personal reading list (not part of the lab)
+elastic_docs_links.md

@@ -1,0 +1,19 @@
+instances:
+  - name: es-a1
+    dns: [es-a1, localhost]
+    ip: [127.0.0.1]
+  - name: es-a2
+    dns: [es-a2, localhost]
+    ip: [127.0.0.1]
+  - name: es-a3
+    dns: [es-a3, localhost]
+    ip: [127.0.0.1]
+  - name: es-b1
+    dns: [es-b1, localhost]
+    ip: [127.0.0.1]
+  - name: es-b2
+    dns: [es-b2, localhost]
+    ip: [127.0.0.1]
+  - name: es-b3
+    dns: [es-b3, localhost]
+    ip: [127.0.0.1]
