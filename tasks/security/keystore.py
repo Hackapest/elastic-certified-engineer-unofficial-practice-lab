@@ -24,7 +24,7 @@ class Keystore(Task):
         # A complete (if unused) S3 client: an S3 client with a secret but no access key makes the
         # node refuse to start, so a half-removed client must never be left behind on a restart.
         for node in NODES["a"]:
-            keystore_add(node, ctx.p["legacy_access"], "AKIALEGACYLEGACY0000")
+            keystore_add(node, ctx.p["legacy_access"], "legacy-access-key-placeholder")
             keystore_add(node, ctx.p["legacy"], "old-secret-value")
 
     def prompt(self, ctx):

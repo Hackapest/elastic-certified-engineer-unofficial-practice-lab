@@ -5,7 +5,7 @@
 Two 3-node Elasticsearch 9.3 clusters with Kibana, sample data, exam-style
 tasks with automatic checking, and troubleshooting scenarios.
 
-> 189 exam-style tasks covering every core and common topic of the exam, 13
+> 195 exam-style tasks covering every core and common topic of the exam, 14
 > troubleshooting scenarios and a timed exam mode. See [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Requirements

@@ -294,6 +294,9 @@ Lessons from the first batch, checked for every new template:
 - **Prompt and solution must agree** on everything graded (column order, bucket
   names, which hits). Selftest compares the solution with itself, so this needs a
   read-through: render all prompts and solutions and read them side by side.
+- **Order comparisons allow ties.** Hits with equal sort values or scores come
+  back in any order (primaries and replicas differ), so `same_hits(ordered=True)`
+  ignores the order within a tie, and a tie group cut off by the page size.
 - **Range buckets** are compared by their bounds, so user-chosen band names don't
   matter; filter buckets have no bounds, so the prompt names them.
 - **Python 3.10**: no nested same-type quotes in f-strings (3.12 only).
@@ -396,6 +399,7 @@ it passes. Only one scenario is active at a time; `./ece status` shows which.
 | `remote-cluster-unreachable` | wrong port, wrong host, proxy mode on the HTTP port |
 | `user-cannot-search` | wrong index pattern, wrong privilege, misspelled role |
 | `node-config-error` | missing certificate, misspelled setting, broken YAML, wrong cluster name |
+| `broken-clusters` | four different allocation problems at once, two on each cluster |
 
 `node-config-error` breaks a node's elasticsearch.yml (missing certificate,
 misspelled setting, broken YAML, wrong cluster name). A stopped container

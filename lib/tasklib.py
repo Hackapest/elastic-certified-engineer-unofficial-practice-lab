@@ -282,10 +282,32 @@ def same_hits(c, answer, reference, ordered):
     ids = lambda r: [(h["_index"], h["_id"]) for h in get(r, "hits.hits", [])]
     got, want = ids(answer), ids(reference)
     if ordered:
-        return c.check(got == want, "returns the expected documents in the expected order",
+        return c.check(same_order(answer, reference), "returns the expected documents in the expected order",
                        _hits_detail(got, want))
     return c.check(sorted(got) == sorted(want), "returns the expected documents",
                    _hits_detail(got, want))
+
+
+def _tie_groups(response):
+    """Hits grouped by equal sort values or score: [(key, sorted hit ids)], in result order."""
+    groups = []
+    for hit in get(response, "hits.hits", []):
+        key = hit.get("sort") if hit.get("sort") is not None else hit.get("_score")
+        key = [_round(v) for v in key] if isinstance(key, list) else _round(key)
+        if not groups or groups[-1][0] != key:
+            groups.append((key, []))
+        groups[-1][1].append((hit["_index"], hit["_id"]))
+    return [(k, sorted(ids)) for k, ids in groups]
+
+
+def same_order(answer, reference):
+    """Same hits in the same order. Hits that tie on their sort values or score come back in any
+    order (it differs between primaries and replicas), and a tie group cut off by the page size
+    may hold other documents, so neither counts as a difference."""
+    got, want = _tie_groups(answer), _tie_groups(reference)
+    if [k for k, _ in got] != [k for k, _ in want] or [len(i) for _, i in got] != [len(i) for _, i in want]:
+        return False
+    return all(a == b for (_, a), (_, b) in zip(got[:-1], want[:-1]))
 
 
 def same_scores(c, answer, reference):
